@@ -1,19 +1,33 @@
 <?php
+require_once 'db.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Optionally, you can process the data here (e.g., save to database)
-  
-  // Sanitize inputs (optional if you're not showing them)
+  // Sanitize inputs
   $email = htmlspecialchars($_POST['email']);
   $first = htmlspecialchars($_POST['first_name']);
   $last = htmlspecialchars($_POST['last_name']);
-  $duration = htmlspecialchars($_POST['duration']);
+  $duration = intval($_POST['duration']);
   $item = htmlspecialchars($_POST['item']);
+  $phone = htmlspecialchars($_POST['phone_number']);
 
-  // You could save to a file or DB here if needed
+  // Connect to DB
+  $conn = getDBConnection();
 
-  // Then show confirmation page:
+  // Insert into DB
+  $stmt = $conn->prepare("INSERT INTO rental_requests 
+    (submitted_at, contact_email, last_name, first_name, phone_number, rent_duration, item_code) 
+    VALUES (NOW(), ?, ?, ?, ?, ?, ?)");
+  
+  if ($stmt) {
+    $stmt->bind_param("ssssss", $email, $last, $first, $phone, $duration, $item);
+    $stmt->execute();
+    $stmt->close();
+  } else {
+    die("Database error: " . $conn->error);
+  }
+
+  $conn->close();
 } else {
-  // Redirect back if accessed directly
   header("Location: index.php");
   exit;
 }
@@ -32,9 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="form-container">
     <h2>Registration Complete</h2>
     <div style="background:#e0ffe0; padding:15px; border-radius:6px; margin-bottom:20px;">
-      <strong>Your rental request has been received.</strong><br><br>
+      <strong>Your rental request has been recorded in our system.</strong><br><br>
       <b>Email:</b> <?= $email ?><br>
       <b>Name:</b> <?= $first . ' ' . $last ?><br>
+      <b>Phone:</b> <?= $phone ?><br>
       <b>Duration:</b> <?= $duration ?> day(s)<br>
       <b>Item:</b> <?= $item ?>
     </div>
