@@ -1,18 +1,18 @@
 <?php
-function getDBConnection(){
-    $servername = "sql.freedb.tech";
-    $username = "freedb_shinji";
-    $password = "93YSwuPD%sdAQSv";
-    $database = "freedb_nervusers";
+function getDBConnection() {
+    $servername = "sql12.freesqldatabase.com";
+    $username = "sql12778486";
+    $password = "lULgmXJ8Wj";
+    $database = "sql12778486";
     $port = 3306;
 
+    // Include port in mysqli connection
+    $connection = new mysqli($servername, $username, $password, $database, $port);
 
-$connection = new mysqli($servername, $username, $password, $database);
-if($connection->connect_error){
-    die("Error: Failed to connect to MySQL. ".$connection->connect_error);
+    if ($connection->connect_error) {
+        die("Error: Failed to connect to MySQL. " . $connection->connect_error);
+    }
+
+    return $connection;
 }
-
-return $connection;
-}
-
 ?>
