@@ -1,6 +1,22 @@
 <?php
 require_once 'db.php';
 
+
+function getItemCode($itemName) {
+    $mapping = [
+        "Camera"     => "CAM-004",
+        "Generator"  => "GEN-005",
+        "Laptop"     => "LTP-003",
+        "Projector"  => "PRJ-001",
+        "Microphone" => "SND-002",
+        "Sound System" => "SND-002"
+    ];
+    
+    return isset($mapping[$itemName]) ? $mapping[$itemName] : null;
+}
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Sanitize inputs
   $email = htmlspecialchars($_POST['email']);
@@ -8,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $last = htmlspecialchars($_POST['last_name']);
   $duration = intval($_POST['duration']);
   $item = htmlspecialchars($_POST['item']);
+  $item = getItemCode($itemName);
   $phone = htmlspecialchars($_POST['phone_number']);
 
   // Connect to DB
