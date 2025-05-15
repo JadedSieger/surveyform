@@ -28,6 +28,11 @@
       </div>
 
       <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phone_number" required />
+      </div>
+
+      <div class="form-group">
         <label for="duration">Duration of Rent (days):</label>
         <input type="number" id="duration" name="duration" min="1" required />
       </div>
@@ -35,11 +40,12 @@
       <div class="form-group">
         <label for="item">Item to be Rented:</label>
         <select id="item" name="item" required>
+          <option value="">-- Select an item --</option>
           <option value="Laptop">Laptop</option>
-<option value="Projector">Projector</option>
-<option value="Camera">Camera</option>
-<option value="Generator">Generator</option>
-<option value="Sound System">Sound System</option>
+          <option value="Projector">Projector</option>
+          <option value="Camera">Camera</option>
+          <option value="Microphone">Microphone</option>
+          <option value="Sound System">Sound System</option>
         </select>
       </div>
 
