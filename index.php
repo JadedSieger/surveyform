@@ -35,11 +35,11 @@
       <div class="form-group">
         <label for="item">Item to be Rented:</label>
         <select id="item" name="item" required>
-          <option value="">-- Select an item --</option>
           <option value="Laptop">Laptop</option>
-          <option value="Projector">Projector</option>
-          <option value="Camera">Camera</option>
-          <option value="Microphone">Microphone</option>
+<option value="Projector">Projector</option>
+<option value="Camera">Camera</option>
+<option value="Generator">Generator</option>
+<option value="Sound System">Sound System</option>
         </select>
       </div>
 
