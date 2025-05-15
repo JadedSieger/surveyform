@@ -9,7 +9,7 @@
 <body>
 
   <div class="form-container">
-    <h2>Rent an Item</h2>
+    <h2>Akari's Tech-Renting Services</h2>
 
     <form action="submit.php" method="POST">
       <div class="form-group">
